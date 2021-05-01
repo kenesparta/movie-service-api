@@ -1,0 +1,15 @@
+DATABASE = {
+    'PASS': '',
+    'HOST': '',
+    'PORT': '',
+}
+
+APP = {
+    'SECRET_KEY': 'CmHuK1vQr&5DPaJE&-!Z',
+    'TESTING': True,
+    'LISTEN': '*:8091',
+}
+
+RABBITMQ = {
+    'HOST': 'msa_rabbitmq_c1',
+}

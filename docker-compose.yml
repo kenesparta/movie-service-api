@@ -1,0 +1,56 @@
+version: '3.7'
+
+services:
+  msa:
+    build:
+      context: '.'
+      dockerfile: etc/python/Dockerfile
+      args:
+        - SERVICE_DIR=movie_service
+        - APP_PORT=8090
+    container_name: msa
+    restart: unless-stopped
+    ports:
+      - 8090:8090
+    networks:
+      msa_main:
+
+  msa_rabbitmq_c1:
+    image: rabbitmq:3.8-alpine
+    container_name: msa_rabbitmq_c1
+    restart: unless-stopped
+    hostname: msa_rabbitmq_c1
+    volumes:
+      - ./etc/rabbitmq:/etc/rabbitmq
+      - msa_rabbitmq:/var/lib/rabbitmq/mnesia/rabbit@my-rabbit
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=123456789
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      msa_main:
+
+  msa_pgsql:
+    image: postgres:12-alpine
+    container_name: msa_pgsql
+    volumes:
+      - type: volume
+        source: msa_pgsql
+        target: /var/lib/postgresql/data
+        volume:
+          nocopy: true
+    env_file:
+      - ./etc/psql/.env
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    networks:
+      msa_main:
+
+volumes:
+  msa_pgsql:
+  msa_rabbitmq:
+
+networks:
+  msa_main:

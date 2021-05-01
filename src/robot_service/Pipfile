@@ -1,0 +1,15 @@
+[[source]]
+name = "src"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+flask = "==1.1"
+requests = "==2.25.1"
+waitress = "2.0"
+pika = "==1.1"
+
+[requires]
+python_version = "3.8"
