@@ -9,6 +9,25 @@
 | 🔗 cURL           | 7.68.0  | Required   |
 | 🐃 GNU Make       | 4.2.1   | Required   |
 
+### 1.1 Directory structure
+
+```
+.
+├── etc                         <- Infrastructure configurations
+│   ├── psql
+│   │   └── scripts
+│   ├── python
+│   └── rabbitmq
+├── img
+└── src                         <- Source code
+    ├── movie_service
+    │   ├── api
+    │   │   └── routes
+    │   └── movie
+    │       └── infrastructure
+    └── robot_service
+```
+
 ## 2. Getting started 🏁
 
 1. Run `make prepare`.
@@ -82,8 +101,8 @@ cp -n ./etc/psql/.env.example ./etc/psql/.env
 ![challenge-diagram](./img/run-04.png)
 
 6. See on RabitMQ, login on `http://127.0.0.1:15672/` with `user: guest` and `pass: guest`.
-![challenge-diagram](./img/run-05.png)
-   
+   ![challenge-diagram](./img/run-05.png)
+
 ![challenge-diagram](./img/run-06.png)
 
 ## 4. Flaws 😢
