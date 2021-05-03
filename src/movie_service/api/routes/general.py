@@ -5,7 +5,12 @@ general = Blueprint('general', __name__)
 
 @general.route('/', methods=['GET'])
 def index():
-    return '<h1>It works!</h1>'
+    return jsonify(
+        {
+            'status': True,
+            'message': 'It works!',
+        }
+    )
 
 
 @general.route('/health', methods=['GET'])

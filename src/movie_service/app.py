@@ -1,10 +1,13 @@
 from flask import Flask
 
 import config
+from api.routes import general, movie
 
 app = Flask(__name__)
 
-app.config.update(
-    TESTING=config.APP['TESTING'],
-    SECRET_KEY=config.APP['SECRET_KEY']
-)
+app.config.update()
+
+
+def register_routes():
+    app.register_blueprint(general.general)
+    app.register_blueprint(movie.movie_bp)

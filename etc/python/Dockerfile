@@ -6,12 +6,13 @@ ARG APP_PORT
 # Prepare the python environment
 RUN apk update && \
     apk upgrade && \
+    apk add --virtual build-deps gcc musl-dev && \
+    apk add postgresql-dev && \
     pip install --upgrade pip && \
     pip install pipenv && \
     pip install waitress
 
 RUN mkdir -p /$SERVICE_DIR
-RUN echo "1+$SERVICE_DIR+$APP_PORT"
 WORKDIR /${SERVICE_DIR}
 
 # Using the root docker context. See the docker-compose.yml file

@@ -1,15 +1,20 @@
 DATABASE = {
-    'PASS': '',
-    'HOST': '',
-    'PORT': '',
+    'USER': 'msa',
+    'PASS': 'msa',
+    'HOST': 'msa_pgsql',  # Comes from the container name (same network)
+    'PORT': '5432',
+    'DATABASE': 'msa',
 }
 
 APP = {
-    'SECRET_KEY': 'CmHuK1vQr&5DPaJE&-!Z',
+    'SECRET_KEY': '4TiWi2K-@2CEzUJlVEpX',
     'TESTING': True,
     'LISTEN': '*:8091',
 }
 
+FREQUENCY_RATE = 30,
+
 RABBITMQ = {
     'HOST': 'msa_rabbitmq_c1',
+    'QUEUE': 'msa_queue',
 }

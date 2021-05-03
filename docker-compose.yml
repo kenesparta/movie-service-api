@@ -9,16 +9,29 @@ services:
         - SERVICE_DIR=movie_service
         - APP_PORT=8090
     container_name: msa
-    restart: unless-stopped
     ports:
       - 8090:8090
+    restart: 'no'
+    networks:
+      msa_main:
+
+  msa_robot:
+    build:
+      context: '.'
+      dockerfile: etc/python/Dockerfile
+      args:
+        - SERVICE_DIR=robot_service
+        - APP_PORT=8091
+    container_name: msa_robot
+    ports:
+      - 8091:8091
+    restart: 'no'
     networks:
       msa_main:
 
   msa_rabbitmq_c1:
     image: rabbitmq:3.8-alpine
     container_name: msa_rabbitmq_c1
-    restart: unless-stopped
     hostname: msa_rabbitmq_c1
     volumes:
       - ./etc/rabbitmq:/etc/rabbitmq
@@ -28,11 +41,14 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
+    restart: 'no'
     networks:
       msa_main:
 
   msa_pgsql:
-    image: postgres:12-alpine
+    build:
+      context: './etc/psql'
+      dockerfile: Dockerfile
     container_name: msa_pgsql
     volumes:
       - type: volume
@@ -44,7 +60,7 @@ services:
       - ./etc/psql/.env
     ports:
       - 5432:5432
-    restart: unless-stopped
+    restart: 'no'
     networks:
       msa_main:
 
