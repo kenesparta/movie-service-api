@@ -59,6 +59,33 @@
 
 1. `make prepare`
 
+```shell
+cp -n src/movie_service/config.py.example src/movie_service/config.py
+cp -n src/robot_service/config.py.example src/robot_service/config.py
+cp -n ./etc/psql/.env.example ./etc/psql/.env
+```
+
+2. `make dc`
+
+![challenge-diagram](./img/run-01.webp)
+
+3. `make make API_KEY=8031c622 import-movies`
+
+![challenge-diagram](./img/run-02.webp)
+
+4. See the database
+
+![challenge-diagram](./img/run-03.webp)
+
+5. Rate and get movies
+
+![challenge-diagram](./img/run-04.png)
+
+6. See on RabitMQ, login on `http://127.0.0.1:15672/` with `user: guest` and `pass: guest`.
+![challenge-diagram](./img/run-05.png)
+   
+![challenge-diagram](./img/run-06.png)
+
 ## 4. Flaws 😢
 
 1. The `config.py.example` values should be empty and do not have to be versioned.
