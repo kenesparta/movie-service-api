@@ -69,7 +69,7 @@ cp -n ./etc/psql/.env.example ./etc/psql/.env
 
 ![challenge-diagram](./img/run-01.webp)
 
-3. `make make API_KEY=8031c622 import-movies`
+3. `make API_KEY=8031c622 import-movies`
 
 ![challenge-diagram](./img/run-02.webp)
 
